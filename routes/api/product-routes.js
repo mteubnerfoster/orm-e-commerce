@@ -27,7 +27,7 @@ router.get('/:id', (req, res) => {
   // be sure to include its associated Category and Tag data
   try {
     const oneItem = await Product.findByPk(req.params.id, {
-      include: [{ model: Category }, { model: Tag }]
+      include: [{model: Category}, {model: Tag}]
     })
     if (!oneItem) {
       res.status(404).json({message: `The entered product is not in this database.`})

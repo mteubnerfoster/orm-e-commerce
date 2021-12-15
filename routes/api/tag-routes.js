@@ -5,7 +5,7 @@ const { Tag, Product, ProductTag } = require('../../models');
 
 router.get('/', (req, res) => {
   try {
-    const allTag = await Tag.findAll({include: [{ model: Product }]})
+    const allTag = await Tag.findAll({include: [{model: Product}]})
     if (!allTag) {
       res.status(404).json({message: `The database currently has no tags.`})
       return
@@ -20,7 +20,7 @@ router.get('/:id', (req, res) => {
   // find a single tag by its `id`
   // includes associated Product data
   try {
-    const oneTag = await Tag.findByPk(req.params.id, {include: [{ model: Product }]})
+    const oneTag = await Tag.findByPk(req.params.id, {include: [{model: Product}]})
     if (!oneTag) {
       res.status(404).json({message: `There are no tags with this ID in the database.`})
       return
@@ -45,8 +45,8 @@ router.put('/:id', (req, res) => {
   // update a tag's name by its `id` value
   try {
     const updateTag = await Tag.update(
-      { tag_name: req.body.tag_name },
-      { where: { id: req.params.id } })
+      {tag_name: req.body.tag_name},
+      {where: {id: req.params.id} })
     if (!updateTag) {
       res.status(404).json({message: 'Tag does not exist.'})
       return
@@ -60,7 +60,7 @@ router.put('/:id', (req, res) => {
 router.delete('/:id', (req, res) => {
   // delete on tag by its `id` value
   try {
-    const deleteTag = await Tag.destroy({where: { id: req.params.id }})
+    const deleteTag = await Tag.destroy({where: {id: req.params.id}})
     if (!deleteTag) {
       res.status(404).json({message: `Entered tag does not exist in the database.`})
       return
