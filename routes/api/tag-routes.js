@@ -4,13 +4,31 @@ const { Tag, Product, ProductTag } = require('../../models');
 // The `/api/tags` endpoint
 
 router.get('/', (req, res) => {
-  // find all tags
-  // be sure to include its associated Product data
+  try {
+    const allTag = await Tag.findAll({include: [{ model: Product }]})
+    if (!allTag) {
+      res.status(404).json({ message: `The database currently has no tags.` })
+      return
+    }
+    res.status(200).json(allTag)
+  } catch (err) {
+    res.status(500).json(err)
+  }
 });
 
 router.get('/:id', (req, res) => {
   // find a single tag by its `id`
-  // be sure to include its associated Product data
+  // includes associated Product data
+  try {
+    const oneTag = await Tag.findByPk(req.params.id, {include: [{ model: Product }]})
+    if (!oneTag) {
+      res.status(404).json({ message: `There are no tags with this ID in the database.` })
+      return
+    }
+    res.status(200).json(oneTag)
+  } catch (err) {
+    res.status(500).json(err)
+  }
 });
 
 router.post('/', (req, res) => {
