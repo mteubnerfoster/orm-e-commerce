@@ -38,7 +38,7 @@ THEN I am able to successfully create, update, and delete data in my database
 * [Express](https://www.npmjs.com/package/express)
 
 ## Finished Product
-The following video shows an example of the e-commerce back end: TBD
+The following video shows an example of the e-commerce back end: [YouTube](https://youtu.be/KUXiHfyR-u8)
 
 ## Questions
 If you have any questions about the repo, please contact me:<br>
